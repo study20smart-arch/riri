@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Bonne Année RIRI ✨</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at top, #ffdde1, #ee9ca7);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    color: rgba(255,255,255,0.8);
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-120vh); opacity: 0; }
+}
+
+section {
+    min-height: 100vh;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 2.2em;
+    margin-bottom: 15px;
+}
+
+p {
+    max-width: 750px;
+    font-size: 1.2em;
+    line-height: 1.8;
+}
+
+.btn {
+    margin-top: 35px;
+    padding: 14px 40px;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(45deg, #ff5f6d, #ffc371);
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: 0.4s;
+}
+
+.btn:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Gallery */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin-top: 30px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    transition: 0.4s;
+}
+
+.gallery img:hover {
+    transform: scale(1.08);
+}
+
+/* Music button */
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.25);
+    border: none;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+    color: white;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">🎵</button>
+
+<section>
+    <h1>Bonne Année RIRI</h1>
+    <p>
+        Une nouvelle année commence ✨<br>
+        et j’avais envie de la débuter avec quelque chose d’unique…<br>
+        comme toi ❤️
+    </p>
+    <button class="btn" onclick="nextSection('message')">Découvrir</button>
+</section>
+
+<section id="message" class="hidden">
+    <h2>Un message du cœur 💕</h2>
+    <p>
+        RIRI, je te souhaite une année remplie de douceur,
+        de rêves réalisés et de sourires sincères.<br><br>
+        Chaque moment avec toi a une saveur particulière.
+    </p>
+    <button class="btn" onclick="nextSection('photos')">Nos souvenirs 📸</button>
+</section>
+
+<section id="photos" class="hidden">
+    <h2>Nos souvenirs 📸</h2>
+    <div class="gallery">
+        <img src="photo1.jpg">
+        <img src="photo2.jpg">
+        <img src="photo3.jpg">
+    </div>
+    <button class="btn" onclick="nextSection('final')">Dernier message</button>
+</section>
+
+<section id="final" class="hidden">
+    <h2>❤️ Pour toi RIRI ❤️</h2>
+    <p>
+        Je ne sais pas ce que cette année nous réserve,
+        mais j’aimerais la commencer avec toi.<br><br>
+        Bonne année, mon coup de cœur 🌹
+    </p>
+</section>
+
+<script>
+function nextSection(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+}
+
+function toggleMusic() {
+    const music = document.getElementById('music');
+    if (music.paused) {
+        music.play();
+    } else {
+        music.pause();
+    }
+}
+
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}, 300);
+</script>
+
+</body>
+</html>
